@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Lofi Focus Space",
+  "description": "A minimalist, dark mode focus dashboard for your new tab page.",
+  "version": "1.0",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "identity"
+  ],
+  "icons": {
+    "128": "logo.png"
+  },
+  "offline_enabled": true
+}

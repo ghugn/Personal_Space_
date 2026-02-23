@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Space</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-layout">
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <img src="logo.png" alt="Logo" class="sidebar-logo">
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-target="view-focus" title="Focus Space">
+                    <i class="fas fa-stopwatch"></i>
+                    <span class="nav-label">Focus</span>
+                </button>
+                <button class="nav-btn" data-target="view-clock" title="World Clock">
+                    <i class="far fa-clock"></i>
+                    <span class="nav-label">Clock</span>
+                </button>
+                <button class="nav-btn" data-target="view-quests" title="Quests">
+                    <i class="fas fa-scroll"></i>
+                    <span class="nav-label">Quests</span>
+                </button>
+                <button class="nav-btn" data-target="view-game" title="Break Game">
+                    <i class="fas fa-gamepad"></i>
+                    <span class="nav-label">Game</span>
+                </button>
+                <button class="nav-btn" data-target="view-portal" title="Shortcuts">
+                    <i class="fas fa-link"></i>
+                    <span class="nav-label">Portal</span>
+                </button>
+                <button class="nav-btn" data-target="view-settings" title="Settings">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-label">Settings</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- Top Right Auth -->
+            <div id="authIndicator" class="auth-indicator">
+                <button id="topLoginBtn" class="top-auth-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <img id="topUserAvatar" class="top-avatar hidden" src="" alt="User" title="Go to Settings">
+            </div>
+
+            <!-- VIEW 1: FOCUS SPACE (Reference Match) -->
+            <section id="view-focus" class="view-section active">
+                <div class="card-panel focus-card">
+                    <header class="card-header">
+                        <div class="header-top">
+                            <h2>FOCUS SPACE</h2>
+                            <button id="zenModeBtn" class="zen-btn" title="Enter Zen Mode">
+                                <i class="fas fa-expand-alt"></i>
+                            </button>
+                        </div>
+                        <h1 class="greeting-text">こんにちは!</h1>
+                    </header>
+
+                    <div class="task-input-container">
+                        <input type="text" id="taskInput" placeholder="What is your focus right now?">
+                    </div>
+
+                    <div class="timer-display" id="timerDisplay">25:00</div>
+
+                    <div class="timer-controls">
+                        <button id="startBtn" class="control-btn" title="Start/Pause">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button id="resetBtn" class="control-btn" title="Reset">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+
+                    <div class="mode-toggles">
+                        <button class="mode-pill active" data-mode="focus">Focus</button>
+                        <button class="mode-pill" data-mode="short">Short Break</button>
+                        <button class="mode-pill" data-mode="long">Long Break</button>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="spotify-container">
+                        <div class="spotify-controls">
+                            <button class="vibe-btn active" data-vibe="study" title="Peaceful Piano">🎵 Study</button>
+                            <button class="vibe-btn" data-vibe="sad" title="Sad Vibes">🌧️ Sad</button>
+                            <button class="vibe-btn" data-vibe="energy" title="Synthwave">⚡ Energy</button>
+                        </div>
+                        <iframe id="spotify-frame" style="border-radius:12px"
+                            src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0"
+                            width="100%" height="80" frameBorder="0" allowfullscreen=""
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 2: CLOCK -->
+            <section id="view-clock" class="view-section hidden">
+                <div class="card-panel clock-card">
+                    <div class="clock-display" id="realtimeClock">00:00:00</div>
+                    <div class="date-display" id="dateDisplay">Monday, January 1</div>
+
+                    <div class="divider"></div>
+
+                    <div class="daily-inspiration">
+                        <div class="daily-image-container">
+                            <img id="dailyImage" src="" alt="Image of the Day" />
+                        </div>
+                        <div class="quote-container">
+                            <p id="dailyQuote">"Focus is the key to success."</p>
+                            <span id="dailyAuthor">- Unknown</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 3: GAME -->
+            <section id="view-game" class="view-section hidden">
+                <div class="card-panel game-card">
+                    <div class="game-layout">
+                        <!-- Left: Game Screen -->
+                        <div class="game-screen-wrapper">
+                            <div class="game-header">
+                                <h2 id="gameTitle">STAR CLICKER</h2>
+                                <div class="game-stats">
+                                    <div class="timer-badge">Time: <span id="gameTimer">30s</span></div>
+                                    <div class="score-badge">Score: <span id="gameScore">0</span></div>
+                                </div>
+                            </div>
+
+                            <div id="gameArea" class="game-area">
+                                <!-- Overlay UI -->
+                                <button id="startGameBtn" class="primary-btn">Start Game</button>
+
+                                <!-- Game 1: Clicker (Existing) -->
+                                <div id="g-clicker" class="mini-game active"></div>
+
+                                <!-- Game 2: Catcher (New) -->
+                                <div id="g-catcher" class="mini-game hidden">
+                                    <div id="catcher-basket" class="basket"></div>
+                                </div>
+
+                                <!-- Game 3: Dino (New) -->
+                                <div id="g-dino" class="mini-game hidden">
+                                    <div id="dino-player" class="dino"></div>
+                                    <div id="dino-obstacle" class="obstacle"></div>
+                                </div>
+
+                                <!-- NEW GAMES (V2) -->
+                                <div id="g-snake" class="mini-game hidden"></div>
+                                <div id="g-typer" class="mini-game hidden"></div>
+                                <div id="g-memory" class="mini-game hidden">
+                                    <div class="memory-grid"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Game Switcher -->
+                        <div class="game-menu">
+                            <button class="game-btn active" data-game="clicker" title="Star Clicker">
+                                <i class="fas fa-hand-pointer"></i>
+                            </button>
+                            <button class="game-btn" data-game="catcher" title="Star Catcher">
+                                <i class="fas fa-shopping-basket"></i>
+                            </button>
+                            <button class="game-btn" data-game="dino" title="Dino Run">
+                                <i class="fas fa-dragon"></i>
+                            </button>
+                            <!-- V2 BUTTONS -->
+                            <button class="game-btn" data-game="snake" title="Neon Snake">
+                                <i class="fas fa-wave-square"></i>
+                            </button>
+                            <button class="game-btn" data-game="typer" title="Rainy Typer">
+                                <i class="fas fa-keyboard"></i>
+                            </button>
+                            <button class="game-btn" data-game="memory" title="Memory Matrix">
+                                <i class="fas fa-th"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 4: PORTAL (Shortcuts) -->
+            <section id="view-portal" class="view-section hidden">
+                <div class="card-panel portal-card">
+                    <header class="card-header">
+                        <h2>SHORTCUT PORTAL</h2>
+                    </header>
+                    <div id="shortcutGrid" class="grid-shortcuts">
+                        <!-- Dynamic content will be injected here -->
+                        <div class="shortcut-item add-new" id="addShortcutBtn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add New</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Shortcut Modal -->
+                <div id="shortcutModal" class="modal-overlay hidden">
+                    <div class="modal-card">
+                        <h3>Add Shortcut</h3>
+                        <input type="text" id="newShortcutName" placeholder="Name (e.g. YouTube)">
+                        <input type="url" id="newShortcutUrl" placeholder="URL (e.g. https://youtube.com)">
+                        <div class="modal-actions">
+                            <button id="cancelShortcut" class="secondary-btn">Cancel</button>
+                            <button id="saveShortcut" class="primary-btn">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 5: SETTINGS -->
+            <section id="view-settings" class="view-section hidden">
+                <div class="card-panel settings-card">
+                    <h2>SETTINGS</h2>
+                    <div class="setting-row">
+                        <label>Target Daily Hours</label>
+                        <select class="styled-select">
+                            <option>4 Hours</option>
+                            <option>6 Hours</option>
+                            <option>8 Hours</option>
+                        </select>
+                    </div>
+                    <div class="setting-row">
+                        <label>Notifications</label>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                    <div class="setting-row">
+                        <label>Auto-start Breaks</label>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    <div class="setting-row">
+                        <label>Image & Quote Refresh</label>
+                        <select id="refreshInterval" class="styled-select">
+                            <option value="0.016667">1 Minute</option>
+                            <option value="0.083333">5 Minutes</option>
+                            <option value="1">1 Hour</option>
+                            <option value="2">2 Hours</option>
+                            <option value="5">5 Hours</option>
+                            <option value="12">12 Hours</option>
+                            <option value="24" selected>24 Hours</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-row fixed-row">
+                        <span class="setting-label">Cloud Sync</span>
+
+                        <button id="btn-google-login" class="custom-g-btn">
+                            <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"
+                                    fill="#4285F4"></path>
+                                <path
+                                    d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.836.86-3.048.86-2.344 0-4.328-1.584-5.036-3.715H.957v2.332A8.997 8.997 0 0 0 9 18z"
+                                    fill="#34A853"></path>
+                                <path
+                                    d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"
+                                    fill="#FBBC05"></path>
+                                <path
+                                    d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"
+                                    fill="#EA4335"></path>
+                            </svg>
+                            <span>Sign in with Google</span>
+                        </button>
+                    </div>
+                    <div class="setting-row">
+                        <label style="color: #ff4757;">Reset RPG Progress</label>
+                        <button id="resetRpgBtn" class="primary-btn"
+                            style="background: rgba(255,71,87,0.1); color: #ff4757; border: 1px solid #ff4757; padding: 4px 12px; font-size: 0.8rem;">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 6: QUESTS (New) -->
+            <section id="view-quests" class="view-section hidden">
+                <div class="card-panel quest-card">
+                    <header class="card-header">
+                        <h2>QUEST LOG</h2>
+                    </header>
+                    <!-- RPG GAMIFIED TASK LIST -->
+                    <div class="rpg-container">
+                        <div class="rpg-header">
+                            <div class="level-badge">LVL <span id="rpgLevel">1</span></div>
+                            <div class="xp-bar-container">
+                                <div class="xp-bar-fill" id="xpBar" style="width: 0%"></div>
+                                <div class="xp-text"><span id="rpgXP">0</span> / 100 XP</div>
+                            </div>
+                        </div>
+
+                        <div class="quest-input-wrapper">
+                            <input type="text" id="rpgInput" placeholder="Add New Quest...">
+                            <button id="addQuestBtn"><i class="fas fa-plus"></i></button>
+                        </div>
+
+                        <div id="questList" class="quest-list">
+                            <!-- Dynamic Quest Items will appear here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEADERBOARD PANEL -->
+                <div class="card-panel leaderboard-card">
+                    <header class="card-header">
+                        <h2>GLOBAL RANKINGS</h2>
+                    </header>
+                    <div class="leaderboard-container">
+                        <div class="leaderboard-header">
+                            <span class="rank-col">#</span>
+                            <span class="name-col">Explorer</span>
+                            <span class="xp-col">Level</span>
+                        </div>
+                        <ul id="leaderboardList" class="leaderboard-list">
+                            <li class="leader-item loading">Loading...</li>
+                        </ul>
+                        <button id="simulateLeaderboardBtn" class="secondary-btn" style="margin-top:1rem; width:100%">
+                            Simulate World
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="app-footer">@Made by Hung</div>
+
+        </main>
+    </div>
+
+    <script src="assets/firebase-app-compat.js"></script>
+    <script src="assets/firebase-auth-compat.js"></script>
+    <script src="assets/firebase-firestore-compat.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
